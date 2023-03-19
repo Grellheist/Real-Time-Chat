@@ -4,7 +4,7 @@
     "description": "This will be my first real project, and will be programmed using Javascript.",
     "main": "index.js",
     "scripts": {
-        "server": "node index",
+        "start": "node index",
         "debug": "nodemon index"
     },
     "repository": {
