@@ -7,9 +7,7 @@ sophisticated over time.
 
 ## The following comes from the basic chat "tutorial" found <a href="https://socket.io/get-started/chat/#homework">here</a>:
 
-# Homework
-
-Here are some ideas to improve the application:
+# Here are some ideas to improve the application:
 
 - [ ] Broadcast a message to connected users when someone connects or disconnects.
 - [ ] Add support for nicknames.
