@@ -87,7 +87,7 @@
         usernameForm.addEventListener("submit", (event) => {
             event.preventDefault();
             if (usernameInput.value) {
-                socket.emit("set username", usernameInput.value);
+                socket.emit("username", usernameInput.value);
                 usernameInput.value = "";
             }
         });
