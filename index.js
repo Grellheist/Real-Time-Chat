@@ -16,8 +16,18 @@ app.get("/", (req, res) => {
 // Some socket.io shenanigans, listens to connections and disconnections
 // Also broadcasts messages to everyone
 io.on('connection', (socket) => {
+    let username;
+    io.emit("chat message", `User with ID ${socket.id} has connected!`);
+    socket.on("username", (name) => {
+        username = name;
+        io.emit("chat message", `User ${username} has connected!`);
+    });
     socket.on("chat message", (msg) => {
-        io.emit("chat message", `ID ${socket.id} said: ${msg}`);
+        if (username){
+            io.emit("chat message", `${username}: ${msg}`);
+        }else{
+            io.emit("chat message", `ID ${socket.id}: ${msg}`);
+        }
     });
     console.log(`User with ID ${socket.id} has connected!`);
     socket.on('disconnect', () => {
