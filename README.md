@@ -15,4 +15,3 @@ sophisticated over time.
 - [ ] Add “{user} is typing” functionality.
 - [ ] Show who’s online.
 - [ ] Add private messaging.
-- [ ] Share your improvements!
