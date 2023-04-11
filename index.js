@@ -23,9 +23,9 @@ io.on('connection', (socket) => {
         io.emit("chat message", `User ${username} has connected!`);
     });
     socket.on("chat message", (msg) => {
-        if (username){
+        if (username) {
             io.emit("chat message", `${username}: ${msg}`);
-        }else{
+        } else {
             io.emit("chat message", `ID ${socket.id}: ${msg}`);
         }
     });
