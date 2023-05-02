@@ -13,24 +13,32 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/views/index.html");
 })
 
+let connectedUsers = [];
+
 // Some socket.io shenanigans, listens to connections and disconnections
 // Also broadcasts messages to everyone
 io.on('connection', (socket) => {
-    let username;
-    io.emit("chat message", `User with ID ${socket.id} has connected!`);
     socket.on("username", (name) => {
-        username = name;
-        io.emit("chat message", `User ${username} has connected!`);
+        socket.username = name;
+        connectedUsers.push(name);
+        io.emit("user connected", connectedUsers);
+        io.emit("chat message", `User ${socket.username} has connected!`);
     });
     socket.on("chat message", (msg) => {
-        if (username) {
-            io.emit("chat message", `${username}: ${msg}`);
+        if (socket.username) {
+            io.emit("chat message", `${socket.username}: ${msg}`);
         } else {
             io.emit("chat message", `ID ${socket.id}: ${msg}`);
         }
     });
     console.log(`User with ID ${socket.id} has connected!`);
+    console.log(connectedUsers)
     socket.on('disconnect', () => {
+        const index = connectedUsers.indexOf(socket.username);
+        if (index > -1) {
+            connectedUsers.splice(index, 1);
+        }
+        io.emit("user connected", connectedUsers)
         console.log(`User with ID ${socket.id} has disconnected!`);
     });
 });

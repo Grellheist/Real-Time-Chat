@@ -67,6 +67,9 @@
         <button type="submit">Set Username</button>
     </form>
 
+    <ul id="user-list">
+    </ul>
+
     <ul id="messages"></ul>
     <form id="form" action="">
         <input id="input" autocomplete="off" /><button>Send</button>
@@ -77,6 +80,7 @@
     <script>
         var socket = io();
 
+        var userList = document.getElementById("user-list");
         var messages = document.getElementById('messages');
         var form = document.getElementById('form');
         var input = document.getElementById('input');
@@ -92,8 +96,8 @@
             }
         });
 
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
             if (input.value) {
                 socket.emit('chat message', input.value);
                 input.value = '';
@@ -106,6 +110,12 @@
             messages.appendChild(item);
             window.scrollTo(0, document.body.scrollHeight);
         });
+
+        socket.on("user connected", function (username) {
+            var userItem = document.createElement("li");
+            userItem.textContent = username;
+            userList.appendChild(userItem);
+        })
     </script>
 </body>
 
