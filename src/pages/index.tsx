@@ -53,7 +53,7 @@ export default function Home() {
     };
 
     return (
-        <>
+        <div className="flex items-center p-4 mx-auto min-h-screen justify-center" >
             {!chosenUsername ? (
                 <>
                     <h3>
@@ -111,6 +111,6 @@ export default function Home() {
                     </div>
                 </>
             )}
-        </>
+        </div>
     );
 }
