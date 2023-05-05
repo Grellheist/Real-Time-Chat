@@ -51,15 +51,15 @@ export default function Home() {
     };
 
     return (
-        <div className="flex items-center p-4 mx-auto min-h-screen justify-center" >
+        <div className="dark:bg-slate-800 flex items-center p-4 mx-auto min-h-screen justify-center" >
             {!chosenUsername ? (
                 <>
-                    <h3>
+                    <h3 className="dark:text-white">
                         Choose your username
                     </h3>
                     <input
                         type="text"
-                        placeholder="Identity..."
+                        placeholder="Username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
@@ -67,6 +67,7 @@ export default function Home() {
                         onClick={() => {
                             setChosenUsername(username);
                         }}
+                        className="dark:text-slate-400"
                     >
                         Enter
                     </button>
