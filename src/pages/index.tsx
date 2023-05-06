@@ -74,7 +74,7 @@ export default function Home() {
                 </>
             ) : (
                 <>
-                    <p >
+                    <p className="text-white">
                         Your username: {username}
                     </p>
                     <div >
@@ -83,6 +83,7 @@ export default function Home() {
                                 return (
                                     <div
                                         key={i}
+                                        className="text-white"
                                     >
                                         {msg.author} : {msg.message}
                                     </div>
@@ -102,6 +103,7 @@ export default function Home() {
                                     onClick={() => {
                                         sendMessage();
                                     }}
+                                    className="text-white font-bold py-2 px-4 rounded-full bg-blue-500 hover:bg-blue-700 flex-col"
                                 >
                                     Send
                                 </button>
