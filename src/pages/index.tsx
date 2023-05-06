@@ -51,10 +51,10 @@ export default function Home() {
     };
 
     return (
-        <div className="dark:bg-slate-800 flex items-center p-4 mx-auto min-h-screen justify-center" >
+        <div className="dark:bg-slate-800 flex items-center p-4 mx-auto min-h-screen justify-center flex-col" >
             {!chosenUsername ? (
                 <>
-                    <h3 className="dark:text-white">
+                    <h3 className="dark:text-white flex-col">
                         Choose your username
                     </h3>
                     <input
@@ -67,7 +67,7 @@ export default function Home() {
                         onClick={() => {
                             setChosenUsername(username);
                         }}
-                        className="dark:text-slate-400"
+                        className="text-white font-bold py-2 px-4 rounded-full bg-blue-500 hover:bg-blue-700 flex-col"
                     >
                         Enter
                     </button>
