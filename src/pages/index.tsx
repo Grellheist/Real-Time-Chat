@@ -56,30 +56,33 @@ export default function Home() {
         <div className="dark:bg-slate-800 flex items-center p-4 mx-auto min-h-screen justify-center flex-col" >
             {!chosenUsername ? (
                 <>
-                    <h3 className="dark:text-white flex-col">
-                        Choose your username
+                    <h3 className="dark:text-white text-2xl font-semibold text-center text-slate-900 mb-8">
+                        What is your name?
                     </h3>
-                    <input
-                        type="text"
-                        placeholder="Username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <button
-                        onClick={() => {
-                            setChosenUsername(username);
-                        }}
-                        className="text-white font-bold py-2 px-4 rounded-full bg-blue-500 hover:bg-blue-700 flex-col"
-                    >
-                        Enter
-                    </button>
+                    <div className="flex flex-row">
+                        <input
+                            type="text"
+                            placeholder="Username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            className="rounded-md"
+                        />
+                        <button
+                            onClick={() => {
+                                setChosenUsername(username);
+                            }}
+                            className="text-white font-bold py-2 px-4 ml-2 rounded-md bg-violet-600 hover:bg-violet-700 "
+                        >
+                            Enter
+                        </button>
+                    </div>
                 </>
             ) : (
                 <>
-                    <p className="text-white">
-                        Your username: {username}
+                    <p className="dark:text-white text-2xl font-semibold text-center text-slate-900 mb-8">
+                        Hello, {username}!
                     </p>
-                    <div >
+                    <div className="flex flex-col">
                         <div >
                             {messages.map((msg, i) => {
                                 return (
@@ -92,20 +95,21 @@ export default function Home() {
                                 );
                             })}
                         </div>
-                        <div >
+                        <div className="flex flex-row">
                             <input
                                 type="text"
                                 placeholder="New message..."
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
                                 onKeyUp={handleKeypress}
+                                className="rounded-md"
                             />
                             <div >
                                 <button
                                     onClick={() => {
                                         sendMessage()
                                     }}
-                                    className="text-white font-bold py-2 px-4 rounded-full bg-blue-500 hover:bg-blue-700"
+                                    className="text-white font-bold ml-2 py-2 px-4 rounded-md bg-violet-600 hover:bg-violet-700 "
                                 >
                                     Send
                                 </button>
