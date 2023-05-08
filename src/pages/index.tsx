@@ -34,12 +34,14 @@ export default function Home() {
     };
 
     const sendMessage = async () => {
-        socket.emit("createdMessage", { author: chosenUsername, message });
-        setMessages((currentMsg) => [
-            ...currentMsg,
-            { author: chosenUsername, message },
-        ]);
-        setMessage("");
+        if (message !== "") {
+            socket.emit("createdMessage", { author: chosenUsername, message });
+            setMessages((currentMsg) => [
+                ...currentMsg,
+                { author: chosenUsername, message },
+            ]);
+            setMessage("");
+        }
     };
 
     const handleKeypress = (e) => {
@@ -85,7 +87,7 @@ export default function Home() {
                                         key={i}
                                         className="text-white"
                                     >
-                                        {msg.author} : {msg.message}
+                                        {msg.author}: {msg.message}
                                     </div>
                                 );
                             })}
@@ -101,9 +103,9 @@ export default function Home() {
                             <div >
                                 <button
                                     onClick={() => {
-                                        sendMessage();
+                                        sendMessage()
                                     }}
-                                    className="text-white font-bold py-2 px-4 rounded-full bg-blue-500 hover:bg-blue-700 flex-col"
+                                    className="text-white font-bold py-2 px-4 rounded-full bg-blue-500 hover:bg-blue-700"
                                 >
                                     Send
                                 </button>
